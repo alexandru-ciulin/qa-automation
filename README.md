@@ -5,3 +5,4 @@
 - Pytest
 - Parametrized tests
 - Fixtures
+- Playwright
