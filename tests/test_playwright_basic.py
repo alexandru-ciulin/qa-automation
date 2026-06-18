@@ -1,90 +1,47 @@
 from playwright.sync_api import sync_playwright
+from pages.login_page import LoginPage
 
-def test_open_example():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        page = browser.new_page()
-        
-        page.goto("https://www.google.ro")
+def test_login_valid(page):
+    login_page = LoginPage(page)
+    login_page.login("standard_user", "secret_sauce")
 
-        page.wait_for_timeout(3000)
+    assert "inventory" in page.url
 
-        page.get_by_role("button", name="Acceptă tot").click()
+def test_login_invalid(page):
+    login_page = LoginPage(page)
+    login_page.login("standard_user", "secret_saucee")
 
-        page.wait_for_timeout(30000)
+    assert page.get_by_text("Epic sadface: Username and password do not match any user in this service")
 
-        assert "Google" in page.title()
+def test_products_after_login(page):
+    login_page = LoginPage(page)
+    login_page.login("standard_user", "secret_sauce")
 
-        browser.close()
+    locator = page.get_by_text("Products")
 
-def test_login():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        page = browser.new_page()
+    assert locator.is_visible()
 
-        page.goto("https://www.saucedemo.com")
+def test_product_backpack(page):
+    login_page = LoginPage(page)
+    login_page.login("standard_user", "secret_sauce")
 
-        page.get_by_placeholder("Username").fill("standard_user")
-        page.get_by_placeholder("Password").fill("secret_sauce")
+    assert page.get_by_text("Sauce Labs Backpack").is_visible()
 
-        page.get_by_role("button", name="Login").click()
+def test_product_count(page):
+    login_page = LoginPage(page)
+    login_page.login("standard_user", "secret_sauce")
 
-        assert "inventory" in page.url
+    product_count = page.get_by_role("button", name="Add to cart").count()
 
-        page.wait_for_timeout(30000)
+    assert product_count == 6
+    # Negative check: test should fail if the expected products count is incorrect
 
-        browser.close()
+def test_select_product(page):
+    login_page = LoginPage(page)
+    login_page.login("standard_user", "secret_sauce")
 
-def test_products_after_login():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        page = browser.new_page()
+    page.get_by_text("Sauce Labs Backpack").click()
+    assert "inventory-item" in page.url
+    assert page.get_by_role("button", name="Add to cart").is_visible()
 
-        page.goto("https://www.saucedemo.com")
-
-        page.get_by_placeholder("Username").fill("standard_user")
-        page.get_by_placeholder("Password").fill("secret_sauce")
-
-        page.get_by_role("button", name="Login").click()
-
-        locator = page.get_by_text("Products")
-
-        assert locator.is_visible()
-
-        browser.close()
-
-def test_product_01():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        page = browser.new_page()
-
-        page.goto("https://www.saucedemo.com")
-
-        page.get_by_placeholder("Username").fill("standard_user")
-        page.get_by_placeholder("Password").fill("secret_sauce")
-
-        page.get_by_role("button", name="Login").click()
-
-        assert page.get_by_text("Sauce Labs Backpack").is_visible()
-
-        browser.close
-
-def test_all_products_6_in_total():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        page = browser.new_page()
-
-        page.goto("https://www.saucedemo.com")
-
-        page.get_by_placeholder("Username").fill("standard_user")
-        page.get_by_placeholder("Password").fill("secret_sauce")
-
-        page.get_by_role("button", name="Login").click()
-
-        products_count = page.get_by_role("button", name="Add to cart").count()
-
-        assert products_count == 6
-        # assert products_count == 5
-
-        browser.close
 

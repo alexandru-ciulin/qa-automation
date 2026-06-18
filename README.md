@@ -1,8 +1,17 @@
-##Progress
+QA Automation Portfolio
 
-- Python basics
-- Functions
+Technologies:
+- Python
 - Pytest
-- Parametrized tests
-- Fixtures
 - Playwright
+- Git/GitHub
+
+Covered topics:
+- Python fundamentals
+- Unit testing with Pytest
+- Fixtures and parametrized tests
+- UI automation with Playwright
+- Version control with Git
+
+Status:
+Work in progress
