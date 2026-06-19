@@ -17,3 +17,16 @@ class ProductsPage:
     def is_product_details_page(self):
         return "inventory-item" in self.page.url
     
+    def add_product_to_cart(self, product_name):
+        product = self.page.locator(".inventory_item", has_text=product_name)
+
+        product.get_by_role("button", name="Add to cart").click()
+
+    def get_cart_badge_count(self):
+        return self.page.locator(".shopping_cart_badge").inner_text()
+    
+    def open_cart(self):
+        self.page.locator(".shopping_cart_link").click()
+
+        return CartPage(self.page)
+    
