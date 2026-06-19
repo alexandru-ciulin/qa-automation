@@ -1,5 +1,8 @@
 import pytest
+
 from playwright.sync_api import sync_playwright
+from pages.login_page import LoginPage
+from pages.products_page import ProductsPage
 
 @pytest.fixture
 def page():
@@ -9,3 +12,29 @@ def page():
         page = context.new_page()
         yield page
         browser.close()
+
+@pytest.fixture
+def logged_in_page(page, valid_credentials):
+    login_page = LoginPage(page)
+
+    login_page.login(valid_credentials["username"], valid_credentials["password"])
+
+    return page
+
+@pytest.fixture
+def valid_credentials():
+    return {
+        "username":"standard_user",
+        "password":"secret_sauce"
+    }
+
+@pytest.fixture
+def invalid_credentials():
+    return {
+        "username":"standard_user",
+        "password":"secret_saucee"
+    }
+
+@pytest.fixture
+def products_page(logged_in_page):
+    return ProductsPage(logged_in_page)
