@@ -3,6 +3,9 @@ import pytest
 from playwright.sync_api import sync_playwright
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
+from pages.cart_page import CartPage
+from pages.checkout_page import CheckoutPage
+
 
 @pytest.fixture
 def page():
@@ -38,3 +41,11 @@ def invalid_credentials():
 @pytest.fixture
 def products_page(logged_in_page):
     return ProductsPage(logged_in_page)
+
+@pytest.fixture
+def cart_page(logged_in_page):
+    return CartPage(logged_in_page)
+
+@pytest.fixture
+def checkout_page(logged_in_page):
+    return CheckoutPage(logged_in_page)

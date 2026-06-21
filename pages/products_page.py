@@ -1,3 +1,5 @@
+from pages.cart_page import CartPage
+
 class ProductsPage:
     def __init__(self, page):
         self.page = page
