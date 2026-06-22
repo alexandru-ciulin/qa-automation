@@ -23,12 +23,15 @@ class ProductsPage:
         product = self.page.locator(".inventory_item", has_text=product_name)
 
         product.get_by_role("button", name="Add to cart").click()
-
-    def get_cart_badge_count(self):
-        return self.page.locator(".shopping_cart_badge").inner_text()
     
     def open_cart(self):
         self.page.locator(".shopping_cart_link").click()
 
         return CartPage(self.page)
+
+    def get_cart_badge_count(self):
+        cart_badge_count =  self.page.locator(".shopping_cart_badge").inner_text()
+        return int(cart_badge_count)
     
+
+

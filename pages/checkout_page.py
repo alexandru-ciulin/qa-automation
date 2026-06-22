@@ -23,5 +23,13 @@ class CheckoutPage:
     def is_order_completed(self):
         return self.page.get_by_text("Thank you for your order!").is_visible()
     
+    def is_error_visible(self):
+        return self.page.locator("[data-test='error']").is_visible()
+    
     def get_error_message(self):
         return self.page.locator("[data-test='error']").inner_text()
+    
+    def is_checkout_step_one_visible(self):
+        return self.page.get_by_text("Checkout: Your Information").is_visible()
+    
+

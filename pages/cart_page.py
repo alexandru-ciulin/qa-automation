@@ -14,4 +14,13 @@ class CartPage:
     def open_checkout(self):
         self.page.get_by_role("button", name="Checkout").click()
 
-        return CheckoutPage(self.page)   
+        return CheckoutPage(self.page)
+    
+    def get_cart_items(self):
+        return self.page.locator(".inventory_item_name").all_inner_texts()
+    
+    def continue_shopping(self):
+        self.page.get_by_role("button", name="Continue Shopping").click()
+
+        from pages.products_page import ProductsPage
+        return ProductsPage(self.page)
