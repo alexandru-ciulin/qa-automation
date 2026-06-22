@@ -1,12 +1,6 @@
 import pytest
 
-def test_checkout_information(products_page):
-    products_page.add_product_to_cart("Sauce Labs Backpack")
-
-    cart_page = products_page.open_cart()
-
-    checkout_page = cart_page.open_checkout()
-
+def test_checkout_information(checkout_page):
     checkout_page.fill_customer_information("Alexandru", "Ciulin", "700715")
 
     assert checkout_page.is_overview_page_visible()
@@ -62,3 +56,15 @@ def test_complete_checkout_flow(products_page):
     checkout_page = cart_page.open_checkout()
 
     assert checkout_page.is_checkout_step_one_visible()
+
+    checkout_page.fill_customer_information(
+        "Alexandru",
+        "Ciulin",
+        "700715"
+    )
+
+    assert checkout_page.is_overview_page_visible()
+
+    checkout_page.finish_order()
+
+    assert checkout_page.is_order_completed()
