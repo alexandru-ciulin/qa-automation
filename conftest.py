@@ -47,5 +47,12 @@ def cart_page(logged_in_page):
     return CartPage(logged_in_page)
 
 @pytest.fixture
-def checkout_page(logged_in_page):
-    return CheckoutPage(logged_in_page)
+def checkout_page(products_page):
+    products_page.add_product_to_cart("Sauce Labs Backpack")
+
+    cart_page = products_page.open_cart()
+
+    checkout_page = cart_page.open_checkout()
+    
+    return checkout_page
+

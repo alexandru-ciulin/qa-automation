@@ -16,3 +16,12 @@ class CheckoutPage:
     
     def is_overview_page_visible(self):
         return self.page.get_by_text("Checkout: Overview").is_visible()
+    
+    def finish_order(self):
+        self.page.get_by_role("button", name="Finish").click()
+
+    def is_order_completed(self):
+        return self.page.get_by_text("Thank you for your order!").is_visible()
+    
+    def get_error_message(self):
+        return self.page.locator("[data-test='error']").inner_text()
