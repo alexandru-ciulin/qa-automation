@@ -33,5 +33,17 @@ class ProductsPage:
         cart_badge_count =  self.page.locator(".shopping_cart_badge").inner_text()
         return int(cart_badge_count)
     
+    def get_product_names(self):
+        return self.page.locator(".inventory_item_name").all_inner_texts()
+    
+    def sort_products(self, option):
+        self.page.locator(".product_sort_container").select_option(option)
 
+    def get_product_prices(self):
+        products_price = self.page.locator(".inventory_item_price").all_inner_texts()
+        clean_prices = []
+        for price in products_price:
+            price = price.replace("$", "")
+            clean_prices.append(float(price))
+        return clean_prices
 

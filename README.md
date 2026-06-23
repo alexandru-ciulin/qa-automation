@@ -45,6 +45,7 @@ Test coverage
     Functional flows
     - Login functionality
     - Product listing validation
+    - Product sorting validation (A → Z, Z → A, price low-to-high, price high-to-low)
     - Add / remove products from cart
     - Cart badge validation
     - Checkout process (full E2E flow)
