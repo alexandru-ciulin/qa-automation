@@ -16,4 +16,4 @@ class LoginPage:
         self.page.get_by_role("button", name="Login").click()
 
     def is_error_message_visible(self):
-        return self.page.get_by_text("Epic sadface: Username and password do not match any user in this service").is_visibile()
+        return self.page.get_by_text("Epic sadface: Username and password do not match any user in this service").is_visible()

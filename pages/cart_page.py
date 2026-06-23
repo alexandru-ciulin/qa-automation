@@ -21,6 +21,3 @@ class CartPage:
     
     def continue_shopping(self):
         self.page.get_by_role("button", name="Continue Shopping").click()
-
-        from pages.products_page import ProductsPage
-        return ProductsPage(self.page)

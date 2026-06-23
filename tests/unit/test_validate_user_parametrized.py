@@ -1,5 +1,5 @@
 import pytest
-from python_fundamente import validate_user
+from src.python_fundamente import validate_user
 
 @pytest.mark.parametrize(
         "username, password, age, expected_result",
