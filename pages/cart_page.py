@@ -1,4 +1,3 @@
-from pages.products_page import ProductsPage
 from pages.checkout_page import CheckoutPage
 from pages.base_page import BasePage
 
@@ -24,7 +23,7 @@ class CartPage(BasePage):
     def continue_shopping(self):
         self.page.get_by_role("button", name="Continue Shopping").click()
 
-        return ProductsPage(self.page)
+        return self.page
 
     def _clean_price(self, price):
         return float(price.replace("$", ""))

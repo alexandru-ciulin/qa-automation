@@ -26,7 +26,9 @@ def test_cart_badge_updates(products_page):
 
     cart_page.remove_product("Sauce Labs Backpack")
 
-    products_page = cart_page.continue_shopping()
+    cart_page.continue_shopping()
+
+    products_page = ProductsPage(cart_page.page)
 
     assert products_page.get_cart_badge_count() == 1
 
