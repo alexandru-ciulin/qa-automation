@@ -1,6 +1,8 @@
-class CheckoutPage:
+from pages.base_page import BasePage
+
+class CheckoutPage(BasePage):
     def __init__(self, page):
-        self.page = page
+        super().__init__(page)
 
     def fill_customer_information(
             self,

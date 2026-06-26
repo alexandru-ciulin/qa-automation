@@ -1,6 +1,8 @@
-class LoginPage:
+from pages.base_page import BasePage
+
+class LoginPage(BasePage):
     def __init__(self, page):
-        self.page = page
+        super().__init__(page)
 
     def open(self):
         self.page.goto("https://www.saucedemo.com")

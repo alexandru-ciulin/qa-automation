@@ -1,8 +1,9 @@
 from pages.cart_page import CartPage
+from pages.base_page import BasePage
 
-class ProductsPage:
+class ProductsPage(BasePage):
     def __init__(self, page):
-        self.page = page
+        super().__init__(page)
    
     def is_products_title_visible(self):
         return self.page.get_by_text("Products").is_visible()
@@ -46,4 +47,10 @@ class ProductsPage:
             price = price.replace("$", "")
             clean_prices.append(float(price))
         return clean_prices
+    
+    def get_products_as_dict(self):
+        product_names = self.get_product_names()
+        product_prices = self.get_product_prices()
+
+        return dict(zip(product_names, product_prices))
 
