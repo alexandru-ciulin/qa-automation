@@ -25,6 +25,9 @@ Covered topics
 - Negative testing strategies
 - Test data parametrization
 - Test suite structuring and modularization
+- Data validation using Python dictionaries (zip + dict transformations)
+- UI state validation using structured assertions
+- Product sorting (A → Z, Z → A, price low-to-high, price high-to-low)
 
 ---
 
@@ -45,9 +48,9 @@ Test coverage
     Functional flows
     - Login functionality
     - Product listing validation
-    - Product sorting validation (A → Z, Z → A, price low-to-high, price high-to-low)
+    - Product sorting (A → Z, Z → A, price low-to-high, price high-to-low)
     - Add / remove products from cart
-    - Cart badge validation
+    - Cart badge and state validation
     - Checkout process (full E2E flow)
 
     Checkout validation
@@ -65,7 +68,16 @@ Login → Products → Cart → Checkout → Order Completion
 
 Status
 
-Work in progress — actively improving framework design, test coverage, and best practices.
+Actively evolving framework with focus on scalability, maintainability, and test design best practices.
+
+---
+
+Framework improvements
+
+- Introduced Page Object Model (POM) with BasePage abstraction
+- Improved test maintainability by separating UI actions from test logic
+- Implemented data-driven validation using Python data structures (dict, zip)
+- Refactored test flows for better readability and reuse
 
 ---
 

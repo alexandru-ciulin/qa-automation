@@ -59,3 +59,16 @@ def test_remove_product_updates_cart_state(products_page):
     products_page = ProductsPage(cart_page.page)
 
     assert products_page.get_cart_badge_count() == 1
+
+def test_cart_total_price(products_page):
+    products_page.add_product_to_cart("Sauce Labs Backpack")
+    products_page.add_product_to_cart("Sauce Labs Bike Light")
+
+    cart_page = products_page.open_cart()
+
+    prices = cart_page.get_cart_prices()
+
+    assert sum(prices) == 39.98
+
+
+

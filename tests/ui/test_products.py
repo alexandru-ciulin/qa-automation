@@ -28,43 +28,35 @@ def test_cart_badge_updates(products_page):
 
     cart_page.continue_shopping()
 
-    from pages.products_page import ProductsPage
     products_page = ProductsPage(cart_page.page)
 
     assert products_page.get_cart_badge_count() == 1
 
 def test_sort_products_a_to_z(products_page):
     products_page.sort_products("az")
+    
+    names = products_page.get_product_names()
 
-    actual_products_name = products_page.get_product_names()
-    expected_products_name = sorted(actual_products_name)
-
-    assert actual_products_name == expected_products_name
+    assert names == sorted(names)
 
 def test_sort_products_z_to_a(products_page):
     products_page.sort_products("za")
 
-    actual_products_name = products_page.get_product_names()
-    expected_products_name = sorted(actual_products_name, reverse=True)
-
-    assert actual_products_name == expected_products_name
+    names = products_page.get_product_names()
+    
+    assert names == sorted(names, reverse=True)
 
 def test_sort_products_price_low_to_high(products_page):
     products_page.sort_products("lohi")
     
-    actual_products_price = products_page.get_product_prices()
-    expected_products_price = sorted(actual_products_price)
+    products_price = products_page.get_product_prices()
 
-    assert actual_products_price == expected_products_price
+    assert products_price == sorted(products_price)
 
 def test_sort_products_price_high_to_low(products_page):
     products_page.sort_products("hilo")
     
-    actual_products_price = products_page.get_product_prices()
-    expected_products_price = sorted(actual_products_price, reverse=True)
-
-    assert actual_products_price == expected_products_price
-
-
-
+    products_price = products_page.get_product_prices()
+    
+    assert products_price == sorted(products_price, reverse=True)
 

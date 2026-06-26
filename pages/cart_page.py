@@ -1,8 +1,9 @@
 from pages.checkout_page import CheckoutPage
+from pages.base_page import BasePage
 
-class CartPage:
+class CartPage(BasePage):
     def __init__(self, page):
-        self.page = page
+        super().__init__(page)
 
     def is_product_in_cart(self, product_name):
         return self.page.get_by_text(product_name).is_visible()
@@ -21,3 +22,13 @@ class CartPage:
     
     def continue_shopping(self):
         self.page.get_by_role("button", name="Continue Shopping").click()
+
+        return self.page
+
+    def _clean_price(self, price):
+        return float(price.replace("$", ""))
+
+    def get_cart_prices(self):
+        prices = self.page.locator(".inventory_item_price").all_inner_texts()
+        
+        return [self._clean_price(price) for price in prices]
