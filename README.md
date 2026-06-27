@@ -1,5 +1,7 @@
 # QA Automation Portfolio
 
+![GitHub Actions](https://github.com/alexandru-ciulin/qa-automation/actions/workflows/tests.yml/badge.svg)
+
 This repository is a QA Automation learning project focused on building a scalable UI test automation framework using Playwright with Python and Pytest.
 
 It demonstrates practical implementation of test automation principles, Page Object Model (POM), and real-world E2E test flows.
@@ -34,6 +36,8 @@ Covered topics
 ---
 
 Project structure
+
+This project follows a Page Object Model architecture with separation between UI logic and test cases.
 
 - pages/ → Page Object classes  
   (LoginPage, ProductsPage, CartPage, CheckoutPage)
