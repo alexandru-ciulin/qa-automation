@@ -1,0 +1,1 @@
+{"uuid": "f3e4a4c3-b499-4b25-8a70-0e7c6cdaf9fc", "befores": [{"name": "postal_code", "status": "passed", "start": 1782546879848, "stop": 1782546879848}], "afters": [{"name": "postal_code::<lambda>", "start": 1782546879965}], "start": 1782546879847, "stop": 1782546879965}

@@ -1,6 +1,10 @@
 from pages.login_page import LoginPage
 from pages.products_page import ProductsPage
+import allure
 
+@allure.feature("Authentication")
+@allure.story("Login functionality")
+@allure.title("Valid user can login successfully")
 def test_login_success(page, valid_credentials):
     login_page = LoginPage(page)
 
@@ -8,8 +12,11 @@ def test_login_success(page, valid_credentials):
 
     products_page = ProductsPage(page)
 
-    assert products_page.is_products_title_visible
+    assert products_page.is_products_title_visible()
 
+@allure.feature("Authentication")
+@allure.story("Login functionality")
+@allure.title("Login with invalid credentials fails")
 def test_login_fail(page, invalid_credentials):
     login_page = LoginPage(page)
 

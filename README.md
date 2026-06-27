@@ -12,6 +12,8 @@ Technologies
 - Pytest
 - Playwright
 - Git / GitHub
+- GitHub Actions
+- Allure Report
 
 ---
 
@@ -78,11 +80,15 @@ Framework improvements
 - Improved test maintainability by separating UI actions from test logic
 - Implemented data-driven validation using Python data structures (dict, zip)
 - Refactored test flows for better readability and reuse
+- Integrated GitHub Actions for automated test execution
+- Integrated Allure Reports for enhanced test reporting
+- Added Allure metadata (features, stories, titles and test steps)
 
 ---
 
 Future improvements
 
 - API testing layer
-- CI pipeline (GitHub Actions)
-- Reporting (Allure)
+- Environment configuration
+- Screenshot attachment for failed tests
+- Parallel test execution
