@@ -96,3 +96,9 @@ Future improvements
 - Environment configuration
 - Screenshot attachment for failed tests
 - Parallel test execution
+
+---
+
+## Live Report
+
+   https://alexandru-ciulin.github.io/qa-automation/
